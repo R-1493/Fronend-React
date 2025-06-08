@@ -1,35 +1,30 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Stepper from './components/Stepper/Stepper'
+import StepperControl from './components/Stepper/StepperControl'
+import { stepperSteps } from './utils/stepperSteps'
+export default function App() {
+  const [currentStep, setCurrentStep] = useState(0)
+  const StepComponent = stepperSteps[currentStep].component
 
-function App() {
-  const [count, setCount] = useState(0)
+  const goToStep = (direction) => {
+    const newIndex = direction === 'next' ? currentStep + 1 : currentStep - 1
+
+    if (newIndex >= 0 && newIndex < stepperSteps.length) {
+      setCurrentStep(newIndex)
+    }
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-bg min-h-screen text-white">
+      <Stepper steps={stepperSteps} currentStep={currentStep} />
+      <div className="py-10">
+        <StepComponent />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <StepperControl
+        currentStep={currentStep}
+        totalSteps={stepperSteps.length}
+        onNavigate={goToStep}
+      />
+    </div>
   )
 }
-
-export default App
