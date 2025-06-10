@@ -4,26 +4,22 @@ const wasteTypes = [
   {
     id: 'construction',
     title: 'Construction Waste',
-    description:
-      'Includes bricks, concrete, wood, metal, and general construction debris.',
-  },
-  {
-    id: 'garden',
-    title: 'Garden Waste',
-    description:
-      'Includes branches, leaves, grass, soil, and other organic materials.',
+    description: 'Building materials and renovation debris.',
   },
   {
     id: 'household',
     title: 'Household Waste',
-    description:
-      'Includes general household garbage, non-recyclables, and broken items.',
+    description: 'General household items and furniture..',
   },
   {
-    id: 'office',
-    title: 'Office Waste',
-    description:
-      'Includes paper, e-waste, plastics, and used office equipment.',
+    id: 'garden',
+    title: 'Garden Waste',
+    description: 'Green waste and landscaping materials',
+  },
+  {
+    id: 'Commercial Waste',
+    title: 'Commercial Waste ',
+    description: 'Business and office clearance.',
   },
 ]
 
@@ -47,15 +43,15 @@ const WasteTypeStep = () => {
             key={id}
             className={`relative cursor-pointer w-full text-left block p-6 rounded-lg border-2 shadow-md transition-all duration-200 pl-12 ${
               selectedTypes.includes(id)
-                ? 'bg-[#0037C1]/10 border-[#0037C1]'
-                : 'bg-[#1C1C1C] border-[#2A2A2A] hover:border-[#0037C1]/50'
+                ? 'bg-[#0037C1]/10 border-[#F14A16]'
+                : 'bg-[#1C1C1C]/50 border-[#2A2A2A] hover:border-[#F14A16]/40'
             }`}
           >
             <input
               type="checkbox"
               checked={selectedTypes.includes(id)}
               onChange={() => toggleType(id)}
-              className="appearance-none absolute top-4 right-4 w-5 h-5   border-2 rounded  border-[#2A2A2A] checked:bg-[#0037C1] checked:border-[#0037C1] peer"
+              className="appearance-none absolute top-4 right-4 w-5 h-5   border-2 rounded  border-[#2A2A2A] checked:bg-[#F14A16] checked:border-[#F14A16] peer"
             />
             <svg
               className="absolute top-5 right-5 w-3 h-3 text-white pointer-events-none scale-[0.75] peer-checked:visible invisible"
