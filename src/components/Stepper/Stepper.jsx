@@ -3,9 +3,9 @@ const Stepper = ({ steps, currentStep }) => {
 
   return (
     <>
-      <div className="hidden md:block px-4 sm:px-6 lg:px-8 py-6 bg-bg overflow-x-auto">
+      <div className="hidden md:block px-4 sm:px-6 lg:px-8 py-6 overflow-x-auto">
         <div className="max-w-5xl mx-auto">
-          <ol className="flex items-center w-full text-sm text-center text-gray-500 sm:text-base">
+          <ol className="flex items-center w-full text-xs font-medium sm:text-base">
             {steps.map((step, index) => {
               const isCompleted = index < currentStep
               const isCurrent = index === currentStep
@@ -14,28 +14,42 @@ const Stepper = ({ steps, currentStep }) => {
               return (
                 <li
                   key={index}
-                  className={`flex items-center ${
-                    index !== steps.length - 1 ? 'md:w-full' : ''
-                  } after:content-[""] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700 ${
-                    isCompleted
-                      ? 'text-white'
-                      : isCurrent
-                      ? 'text-white font-semibold'
-                      : 'text-gray-400'
+                  className={`flex w-full relative justify-center ${
+                    index !== steps.length - 1 &&
+                    `after:content-[''] after:w-full after:h-0.5 after:inline-block after:absolute after:top-5 after:left-1/2 after:-translate-x-0.5 ${
+                      isCompleted || isCurrent
+                        ? 'after:bg-[#F14A16]'
+                        : 'after:bg-white'
+                    }`
                   }`}
                 >
-                  <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-                    {isCompleted ? (
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 me-2.5 text-blue-600" />
-                    ) : isCurrent ? (
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 me-2.5 text-blue-600" />
-                    ) : (
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5 me-2.5" />
-                    )}
-                    <span className="inline-block whitespace-nowrap">
+                  <div className="flex flex-col items-center z-10">
+                    <span
+                      className={`
+                        flex justify-center items-center w-10 h-10 rounded-full mb-3
+                        ${
+                          isCompleted
+                            ? 'bg-[#F14A16] text-white '
+                            : isCurrent
+                            ? 'border-4 border-white bg-[#F14A16] text-white'
+                            : 'bg-white border-2 border-white text-gray-400'
+                        }
+                      `}
+                    >
+                      <Icon />
+                    </span>
+                    <span
+                      className={`text-sm ${
+                        isCurrent
+                          ? 'text-[#F14A16] font-bold'
+                          : isCompleted
+                          ? 'text-white font-bold'
+                          : 'text-[#BEBEBE] font-normal'
+                      }`}
+                    >
                       {step.label}
                     </span>
-                  </span>
+                  </div>
                 </li>
               )
             })}
@@ -43,9 +57,10 @@ const Stepper = ({ steps, currentStep }) => {
         </div>
       </div>
 
+      {/* Mobile Stepper */}
       <div className="md:hidden p-4 space-y-2">
         <h3 className="text-base font-semibold text-white">
-          Step {currentStep + 1}: {steps[currentStep]?.label || 'Current Step'}
+          Step {currentStep}: {steps[currentStep - 1]?.label || 'Current Step'}
         </h3>
         <div className="flex justify-center space-x-3">
           {steps.map((_, index) => (
@@ -53,9 +68,9 @@ const Stepper = ({ steps, currentStep }) => {
               key={index}
               className={`w-8 h-2 rounded-full ${
                 index < currentStep
-                  ? 'bg-blue-600'
+                  ? 'bg-[#F14A16]'
                   : index === currentStep
-                  ? 'bg-blue-600 animate-pulse'
+                  ? 'bg-[#F14A16] animate-pulse'
                   : 'bg-gray-400'
               }`}
             ></span>

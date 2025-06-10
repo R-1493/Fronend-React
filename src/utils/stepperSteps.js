@@ -12,7 +12,7 @@ import PermitCheckStep from '../components/Stepper/steps/PermitCheckStep'
 import ChooseDateStep from '../components/Stepper/steps/ChooseDateStep'
 import PaymentStep from '../components/Stepper/steps/PaymentStep'
 
-export const stepperSteps = [
+const stepperSteps = [
   {
     icon: SlLocationPin,
     label: 'Postcode',
@@ -22,11 +22,14 @@ export const stepperSteps = [
     icon: FaRegTrashAlt,
     label: 'Waste Type',
     component: WasteTypeStep,
+    title: 'Selected Waste Types',
+    desc: 'Garden Waste',
   },
   {
     icon: TbTruck,
     label: 'Select Skip',
     component: SelectSkipStep,
+    desc: 'Imagery and information shown throughout this website may not reflect the exact shape or size specification, colours may vary, options and/or accessories may be featured at additional cost.',
   },
   {
     icon: LuShield,
@@ -44,3 +47,4 @@ export const stepperSteps = [
     component: PaymentStep,
   },
 ]
+export default stepperSteps

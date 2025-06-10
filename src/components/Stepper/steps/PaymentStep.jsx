@@ -1,10 +1,11 @@
 const PaymentStep = () => (
-  <div>
-    <h2 className="text-xl font-bold mb-4">Payment</h2>
-    <p>Secure payment powered by Stripe (or similar).</p>
-    <button className="bg-green-600 text-white px-4 py-2 mt-4 rounded">
-      Pay Now
-    </button>
+  <div className="text-center ">
+    <h1 className="text-5xl sm:text-7xl font-['Impact'] text-white mb-4">
+      Payment
+    </h1>
+    <h2 className="text-2xl sm:text-4xl font-['Arial'] italic text-white opacity-80">
+      Complete Payment
+    </h2>{' '}
   </div>
 )
 export default PaymentStep
